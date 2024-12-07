@@ -22,4 +22,7 @@ var mergeTwoLists = function(list1, list2) {
         return list2
     }
     return list1
+    /*
+        I think mac is fine it's pretty plug and play I wonder if this commit will work
+    */
 };
