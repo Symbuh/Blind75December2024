@@ -17,3 +17,5 @@ var maxProfit = function(prices) {
 
     return output
 };
+
+// Runtime 2ms, Faster than 80% of submissions
