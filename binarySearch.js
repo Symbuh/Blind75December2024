@@ -1,3 +1,4 @@
+// 0ms, faster than 100% of submissions
 /**
  * @param {number[]} nums
  * @param {number} target
