@@ -29,3 +29,4 @@ var isAnagram = function(s, t) {
     }
     return true
 };
+// 14ms faster than 73% of submissions
