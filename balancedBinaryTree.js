@@ -11,43 +11,21 @@
  * @return {boolean}
  */
 var isBalanced = function(root) {
-    let rightD, leftD
     
-    let findDepth = (node, level, leftOrRight) => {
-        console.log(`Level: ${level} leftOrRight ${leftOrRight}`)
-        if (!node.left && !node.right) {
-            if (!leftOrRight) {
-                rightD = level
-            } else {
-                console.log('setting leftD' + level)
-                leftD = level 
-            }
-            return level 
-        }
-        if (node.right) {
-            findDepth(node.right, level + 1, leftOrRight)
-        }
-        if (node.left) {
-            findDepth(node.left, level + 1, leftOrRight)
-        }
-    }
-    
-    if (root === null) {
-        return true
-    }
-    if (root.left === null || root.right === null) {
-        return true
+    let height = (node) => {
+        if (node === null) return 0
+
+        // Recursively get the height of the left subtree
+        let leftHeight = height(node.left)
+        if (leftHeight === -1) return -1 // If the left subtree is unblanced, return -1
+
+        let rightHeight = height(node.right)
+        if (rightHeight === -1) return -1
+
+        if (Math.abs(leftHeight - rightHeight) > 1) return -1
+
+        return Math.max(leftHeight, rightHeight) + 1
     }
 
-    let leftDepth = findDepth(root.left, 1, true)
-    let rightDepth = findDepth(root.right, 1, false)
-
-    console.log(`Right depth ${rightDepth}, Left depth ${leftDepth}`)
-    console.log(`RightD: ${rightD}, leftD ${leftD}`)
-
-    if (Math.abs(rightD - leftD) > 1) {
-        return false
-    } 
-
-    return true
+    return height(root) !== -1
 };
