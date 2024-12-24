@@ -53,6 +53,4 @@ var lowestCommonAncestor = function(root, p, q) {
 };
 /*
     69ms, faster than 97% of solutions. 
-
-    I'm not going to lie I checked the solutions tab for this one but this was a really interesting solution
 */
