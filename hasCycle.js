@@ -5,7 +5,7 @@
  *     this.next = null;
  * }
  */
-
+ // 55ms, faster than 93.11% of javascript solutions
 /**
  * @param {ListNode} head
  * @return {boolean}
