@@ -42,3 +42,4 @@ var solution = function(isBadVersion) {
         }
     };
 };
+// Runtime 50ms faster than 70% of online submissions
