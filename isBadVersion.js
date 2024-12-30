@@ -18,9 +18,26 @@ var solution = function(isBadVersion) {
      * @return {integer} The first bad version
      */
     return function(n) {
-        for (let i = 0; i <= n; i++) {
-            if (isBadVersion(i)) {
-                return i
+        let searching = true, currentMin = 0, currentMax = n, middle = Math.floor(n/2)
+
+        if (n === 1 && isBadVersion(1) === true) {
+            return 1
+        }
+
+        while (searching) { 
+            if (isBadVersion(middle)) {
+                if (!isBadVersion(middle - 1)) {
+                    return middle 
+                } else {
+                    currentMax = middle 
+                    middle = Math.floor((currentMax - currentMin) / 2) + currentMin
+                }
+            } else {
+                currentMin = middle
+                middle = Math.ceil((currentMax - currentMin) / 2) + currentMin
+            }
+            if (currentMax === currentMin) {
+                searching = false
             }
         }
     };
