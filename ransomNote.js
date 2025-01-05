@@ -6,6 +6,10 @@
 var canConstruct = function(ransomNote, magazine) {
     let memo = {}
 
+    if (ransomNote.length > magazine.length) {
+        return false
+    }
+
     for (let i = 0; i < magazine.length; i++) {
         if (memo[magazine[i]]) {
             memo[magazine[i]]++
@@ -23,5 +27,3 @@ var canConstruct = function(ransomNote, magazine) {
     }
     return true
 };
-// Runtime 25ms, beats 22.32% of solutions
-// I wonder why it's so slow, you can't use binary search so what solution could be faster than memoization
