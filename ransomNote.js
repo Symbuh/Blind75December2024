@@ -23,3 +23,5 @@ var canConstruct = function(ransomNote, magazine) {
     }
     return true
 };
+// Runtime 25ms, beats 22.32% of solutions
+// I wonder why it's so slow, you can't use binary search so what solution could be faster than memoization
