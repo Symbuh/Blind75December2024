@@ -26,3 +26,4 @@ var solution = function(isBadVersion) {
 
     };
 };
+// 44ms, beats 89% of submissions. 
