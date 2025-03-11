@@ -17,3 +17,5 @@ var climbStairs = function(n) {
     
     return secondPrevious + previous
 };
+
+// 0ms runtime faster than 100% of solutions submitted
