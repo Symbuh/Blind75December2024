@@ -26,4 +26,4 @@ var longestPalindrome = function(s) {
     }
 
     return longest
-};
+}; // 4ms runtime, faster than 77% of submissions
