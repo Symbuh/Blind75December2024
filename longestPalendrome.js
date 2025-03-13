@@ -23,4 +23,4 @@ var longestPalindrome = function(s) {
     }
 
     return longest
-};
+};// 25 ms, faster than 25% of solutions
