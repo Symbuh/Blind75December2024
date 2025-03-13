@@ -16,4 +16,7 @@ var majorityElement = function(nums) {
             memo[nums[i]] = 1
         }
     }
-};
+}; // 8ms runtime beating 24% of solutions
+
+// There's gotta be an even faster way to solve this that I'm missing. 
+
