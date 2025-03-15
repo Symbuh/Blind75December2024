@@ -15,4 +15,4 @@ var maxSubArray = function(nums) {
         max = Math.max(max, total)
     }
     return max
-}
+} // 1ms, faster than 98% of online submissions
