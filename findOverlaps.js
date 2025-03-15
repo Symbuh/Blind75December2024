@@ -1,8 +1,6 @@
-/**
- * @param {number[][]} intervals
- * @param {number[]} newInterval
- * @return {number[][]}
- */
+// Not a working solution but I've been struggling for so long that I figured I'd put it heres
+
+
 var insert = function(intervals, newInterval) {
     // Check our array for buckets which overlap with our interval
     let overlaps = [], output = []
