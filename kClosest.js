@@ -15,4 +15,4 @@ var kClosest = function(points, k) {
     }
 
     return output
-};
+}; // 66 ms faster than 70% of submissions 
