@@ -3,22 +3,6 @@
  * @return {number[][]}
  */
 var threeSum = function(nums) {
-    /*
-        nums[i] nums[j] nums[k]
-
-        i != j
-        i != k
-        j != k
-
-        basically the indexes cannot be equal,
-        it must be a unique index 
-
-        two sum 
-        create a memo with the key being the int and the val being an 
-            array of indicies? 
-
-        iterate back through the string, check to see if theres a match for our target minus the current character and return
-    */
     let memo = {}
 
     for (let i = 0; i < nums.length; i++) {
@@ -33,37 +17,37 @@ var threeSum = function(nums) {
         let output = []
 
         for (let i = 0; i < nums.length; i++) {
+            let lastVal = 0 - (nums[i] + target)
+
             if (i !== index) {
-                if (memo[target - nums[i]]) {
-                    for (let j = 0; j < memo[target - nums[i]].length; j++) {
-                        if(memo[target - nums[i]][j] !== i && memo[target - nums[i]][j] !== index) {
-                            output.push([nums[i], nums[memo[target - nums[i]][j]]])
-                            j = memo[target - nums[i]].length
+                if (memo[lastVal]) {
+                    for (let j = 0; j < memo[lastVal].length; j++) {
+                        if(memo[lastVal][j] !== i && memo[lastVal][j] !== index) {
+                            output.push([nums[i], nums[memo[lastVal][j]]])
+                            j = memo[lastVal].length
                         }
                     }
                 }
             }
         }
-
-        console.log(`two sum Index: ${index}, target: ${target}`)
-        console.log(output)
-
         return output
     }
 
-    let res = []
+    let res = [], outputMemo = {}
 
     for (let i = 0; i < nums.length; i++) {
-        /*
-            I'm remembering now that there's a much cleaner way to do this problem that I'm completely spacing on.
-        */
-        let pairs = twoSum(i, 0 - nums[i])
+        let pairs = twoSum(i, nums[i])
 
         if (pairs.length > 0) {
-            pairs.forEach((pair, i) => {
+            pairs.forEach((pair, j) => {
                 let temp = pair
                 temp.push(nums[i])
-                res.push(temp)
+                temp = temp.sort((a, b) => a - b)
+                if (outputMemo[temp.toString()] === undefined) {
+                    res.push(temp)
+                    outputMemo[temp.toString()] = temp
+                }
+                
             })
         }
     }
