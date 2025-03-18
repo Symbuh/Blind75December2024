@@ -1,9 +1,7 @@
-/**
- * @param {number[]} nums
- * @return {number[][]}
- */
 var threeSum = function(nums) {
     let memo = {}
+
+    nums = nums.sort((a,b) => a - b)
 
     for (let i = 0; i < nums.length; i++) {
         if (memo[nums[i]]) {
@@ -12,45 +10,27 @@ var threeSum = function(nums) {
             memo[nums[i]] = [i]
         }
     }
+    
+    let output = [], glorble = new Set()
 
-    let twoSum = (index, target) => {
-        let output = []
+    for(let i = 0; i < nums.length; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            let last = 0 - (nums[i] + nums[j])
 
-        for (let i = 0; i < nums.length; i++) {
-            let lastVal = 0 - (nums[i] + target)
-
-            if (i !== index) {
-                if (memo[lastVal]) {
-                    for (let j = 0; j < memo[lastVal].length; j++) {
-                        if(memo[lastVal][j] !== i && memo[lastVal][j] !== index) {
-                            output.push([nums[i], nums[memo[lastVal][j]]])
-                            j = memo[lastVal].length
+            if (memo[last]) {
+                for(let y = 0; y < memo[last].length; y++) {
+                    if (memo[last][y] !== i && memo[last][y] !== j) {
+                        let narfle = [nums[i], nums[j], last].sort((a, b) => a - b)
+                        let narfleString = `${narfle[0]}${narfle[1]}${narfle[2]}`
+                        if (!glorble.has(narfleString)) {
+                            glorble.add(narfleString)
+                            output.push(narfle)
                         }
                     }
                 }
             }
         }
-        return output
     }
 
-    let res = [], outputMemo = {}
-
-    for (let i = 0; i < nums.length; i++) {
-        let pairs = twoSum(i, nums[i])
-
-        if (pairs.length > 0) {
-            pairs.forEach((pair, j) => {
-                let temp = pair
-                temp.push(nums[i])
-                temp = temp.sort((a, b) => a - b)
-                if (outputMemo[temp.toString()] === undefined) {
-                    res.push(temp)
-                    outputMemo[temp.toString()] = temp
-                }
-                
-            })
-        }
-    }
-
-    return res
+    return output
 };
