@@ -1,36 +1,49 @@
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
 var threeSum = function(nums) {
-    let memo = {}
-
+    let output = []
     nums = nums.sort((a,b) => a - b)
 
-    for (let i = 0; i < nums.length; i++) {
-        if (memo[nums[i]]) {
-            memo[nums[i]].push(i)
-        } else {
-            memo[nums[i]] = [i]
+    for (let i = 0; i < nums.length - 2; i++) {
+        if (i > 0 && nums[i] == nums[i - 1]) {
+            //Skip over dupilicate I values
+            continue; 
         }
-    }
-    
-    let output = [], glorble = new Set()
 
-    for(let i = 0; i < nums.length; i++) {
-        for (let j = i + 1; j < nums.length; j++) {
-            let last = 0 - (nums[i] + nums[j])
+        // Each pointer starts at the opposite end of the remaning array
+        let j = i + 1;
+        let k = nums.length - 1
 
-            if (memo[last]) {
-                for(let y = 0; y < memo[last].length; y++) {
-                    if (memo[last][y] !== i && memo[last][y] !== j) {
-                        let narfle = [nums[i], nums[j], last].sort((a, b) => a - b)
-                        let narfleString = `${narfle[0]}${narfle[1]}${narfle[2]}`
-                        if (!glorble.has(narfleString)) {
-                            glorble.add(narfleString)
-                            output.push(narfle)
-                        }
-                    }
+        while (j < k) {
+            let sum = nums[i] + nums[j] + nums[k]
+
+            if (sum === 0) {
+                output.push([nums[i], nums[j], nums[k]])
+
+                /*
+                    Because the array is sorted, we can walk to the end of the duplicate values 
+                        for both I and J 
+                */
+                while (j < k && nums[j] === nums[j + 1]) {
+                    j++
                 }
+
+                while (j < k && nums[k] === nums[k - 1]) {
+                    k--
+                }
+
+                j++
+                k--
+            } else if (sum < 0) {
+                j++
+            } else {
+                k--
             }
+            // if our answer doesn't equal 0, we chose which pointer to move in order to bring the
+            // answer closer to 0
         }
     }
-
     return output
 };
