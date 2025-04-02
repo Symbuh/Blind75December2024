@@ -29,4 +29,4 @@ var evalRPN = function(tokens) {
     }
 
     return queue.pop()
-};
+}; // Faster than 22% of submissions for some reason even though we have an o(n) runtime
