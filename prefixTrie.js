@@ -44,10 +44,4 @@ Trie.prototype.startsWith = function(prefix) {
     return false
 };
 
-/** 
- * Your Trie object will be instantiated and called as such:
- * var obj = new Trie()
- * obj.insert(word)
- * var param_2 = obj.search(word)
- * var param_3 = obj.startsWith(prefix)
- */
+// This could be optimized further but I'm already familiar with the implementation. 
