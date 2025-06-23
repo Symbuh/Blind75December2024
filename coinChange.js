@@ -9,6 +9,7 @@ var coinChange = function(coins, amount) {
 
     for (let coin of coins) {
         for (let i = coin; i <= amount; i++) {
+            // store the lowest number of coins needed for each index, starting with the base value of each coin, use this minimum to calculate adjacent values 
             memo[i] = Math.min(memo[i], memo[i - coin] + 1)
         }
     }
