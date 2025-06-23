@@ -4,22 +4,23 @@
  * @return {number}
  */
 var coinChange = function(coins, amount) {
-    coins.sort((a, b) => a - b)
-    let count = 0
+    let output = -1
 
-    for (let i = coins.length - 1; i >= 0; i--) {
-        if (amount >= coins[i]) {
-            let temp = Math.floor(amount / coins[i])
-            console.log(`Round amount ${amount} coin ${coins[i]} result: ${temp}`)
-            count = count + temp
-            amount = amount - (coins[i] * temp)
+    let inner = (coins, amount, count) => {
+        console.log(`coins ${coins}, amount ${amount}, count ${count}`)
+        if (amount === 0) {
+            output = count
+            return count
+        }
+
+        for (let i = 0; i < coins.length; i++) {
+            if (coins[i] <= amount) {
+                console.log(`all the way in`)
+                inner(coins, amount - coins[i], count + 1)
+            }
         }
     }
 
-    console.log(`after loop: Count ${count} Amount ${amount}`)
-    if (amount !== 0) {
-        return -1
-    }
-
-    return count
+    inner(coins, amount, 0)
+    return output
 };
