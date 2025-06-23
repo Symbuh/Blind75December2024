@@ -1,21 +1,25 @@
-/**
- * @param {number[]} coins
- * @param {number} amount
- * @return {number}
- */
 var coinChange = function(coins, amount) {
     let output = -1
+    coins = coins.sort((a, b) => b - a)
 
     let inner = (coins, amount, count) => {
-        console.log(`coins ${coins}, amount ${amount}, count ${count}`)
         if (amount === 0) {
-            output = count
-            return count
+            if (output === -1 || count < output) {
+                output = count
+            }
+            return output
+        }
+        
+        // if (output !== -1) {
+        //     return output
+        // }
+
+        if (amount < 0) {
+            return -1
         }
 
         for (let i = 0; i < coins.length; i++) {
             if (coins[i] <= amount) {
-                console.log(`all the way in`)
                 inner(coins, amount - coins[i], count + 1)
             }
         }
