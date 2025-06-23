@@ -1,30 +1,28 @@
+/**
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
 var coinChange = function(coins, amount) {
-    let output = -1
-    coins = coins.sort((a, b) => b - a)
+    let memo = {}
+    
+    let dfs = (remainder) => {
+        if (remainder === 0) return 0
+        if (remainder < 0) return Infinity
+        if (remainder in memo) return memo[remainder]
 
-    let inner = (coins, amount, count) => {
-        if (amount === 0) {
-            if (output === -1 || count < output) {
-                output = count
-            }
-            return output
-        }
-        
-        // if (output !== -1) {
-        //     return output
-        // }
-
-        if (amount < 0) {
-            return -1
-        }
-
-        for (let i = 0; i < coins.length; i++) {
-            if (coins[i] <= amount) {
-                inner(coins, amount - coins[i], count + 1)
+        let min = Infinity
+        for (let coin of coins) {
+            let res = dfs(remainder - coin)
+            if (res !== Infinity) {
+                min = Math.min(min, res + 1)
             }
         }
+
+        memo[remainder] = min
+        return min
     }
 
-    inner(coins, amount, 0)
-    return output
+    let result = dfs(amount) 
+    return result === Infinity ? -1 : result
 };
