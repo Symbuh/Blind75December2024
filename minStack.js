@@ -4,10 +4,6 @@ var MinStack = function() {
     this.min = []
 };
 
-/** 
- * @param {number} val
- * @return {void}
- */
 MinStack.prototype.push = function(val) {
     this.stack.push(val)
 
@@ -18,9 +14,6 @@ MinStack.prototype.push = function(val) {
     }
 };
 
-/**
- * @return {void}
- */
 MinStack.prototype.pop = function() {
     let pop = this.stack.pop() 
     if (this.min[this.min.length - 1] === pop) {
@@ -30,16 +23,10 @@ MinStack.prototype.pop = function() {
     return pop
 };
 
-/**
- * @return {number}
- */
 MinStack.prototype.top = function() {
     return this.stack[this.stack.length - 1]
 };
 
-/**
- * @return {number}
- */
 MinStack.prototype.getMin = function() {
     return this.min[this.min.length - 1]
 };
