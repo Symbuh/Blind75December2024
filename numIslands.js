@@ -9,19 +9,19 @@ var numIslands = function(grid) {
 
         grid[x][y] = 0
 
-        if (grid[x + 1]?.[y] && parseInt(grid[x + 1][y]) === 1) {
+        if (grid[x + 1]?.[y] && grid[x + 1][y] === '1') {
             markIsland(x + 1, y)
         }
 
-        if (grid[x - 1]?.[y] && parseInt(grid[x - 1][y]) === 1) {
+        if (grid[x - 1]?.[y] && grid[x - 1][y] === '1') {
             markIsland(x - 1, y)
         }
 
-        if (grid[x]?.[y + 1] && parseInt(grid[x][y + 1]) === 1) {
+        if (grid[x]?.[y + 1] && grid[x][y + 1] === '1') {
             markIsland(x, y + 1)
         }
 
-        if (grid[x]?.[y - 1] && parseInt(grid[x][y - 1]) === 1) {
+        if (grid[x]?.[y - 1] && grid[x][y - 1] === '1') {
             markIsland(x, y - 1)
         }
 
@@ -32,9 +32,7 @@ var numIslands = function(grid) {
     
     for (let [xIdx, row] of grid.entries()) {
         for (let [yIdx, val] of row.entries()) {
-            val = parseInt(val)
-            
-            if (val === 1) {
+            if (val === '1') {
                 markIsland(xIdx, yIdx)
                 output++
             }
