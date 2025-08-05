@@ -4,6 +4,11 @@
  */
 var numIslands = function(grid) {
     // Storing the visited Array is unneccessary
+    // We can use the original array and re-assign values to zero... 
+    // this is going to save significant runtime and I cant believe that I 
+    // didn't remember this solution from previous attempts at the problem
+    // I'm frusterated with myself and I'm spamming a bunch of typing for 
+    // extra commit swag
     let visited = []
     
     for (let row of grid) {
