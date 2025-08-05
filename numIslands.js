@@ -3,6 +3,7 @@
  * @return {number}
  */
 var numIslands = function(grid) {
+    // Storing the visited Array is unneccessary
     let visited = []
     
     for (let row of grid) {
