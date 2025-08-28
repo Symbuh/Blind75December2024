@@ -1,6 +1,7 @@
 /**
  * @param {character[][]} grid
  * @return {number}
+ * Beats 34% of online submissions
  */
 var numIslands = function(grid) {
 
