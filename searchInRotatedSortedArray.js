@@ -1,45 +1,30 @@
 class Solution {
     public int search(int[] nums, int target) {
-        // They say n(log(n)) runtime complexity
-        // I don't know if binary search will work flat out for this problem though. 
-
-        // I think I just need to implement binary search but make cases that reset the array if you go over the edge? 
-        // This is a pretty tough problem. 
-        int left = 0;
-        int right = nums.length - 1;
+        int left = 0, right = nums.length - 1;
 
         while (left <= right) {
-            int center = left + (right - left) / 2;
+            int mid = left + (right - left) / 2;
 
-            if (nums[center] == target) {
-                return center;
+            if (nums[mid] == target) {
+                return mid;
             }
 
-            // if (right == center) {
-            //     if (left == right || left == (right - 1)) {
-            //         return - 1;
-            //     }
-            // }
-
-            // if (nums[right] < target && nums[left] > target) {
-            //     return -1;
-            // }
-
-            if (nums[center] <= target) {
-                if (nums[right] <= target) {
-                    // shift left 
-                    right = center - 1;
+            // Check if left half is sorted
+            if (nums[left] <= nums[mid]) {
+                // Target is in the left half
+                if (nums[left] <= target && target < nums[mid]) {
+                    right = mid - 1;
                 } else {
-                    // shift right
-                    left = center + 1;
+                    left = mid + 1;
                 }
-            } else {
-                if (nums[left] >= target) {
-                    // shift right
-                    left = center + 1;
+            }
+            // Otherwise, right half is sorted
+            else {
+                // Target is in the right half
+                if (nums[mid] < target && target <= nums[right]) {
+                    left = mid + 1;
                 } else {
-                    // shift left
-                    right = center - 1;
+                    right = mid - 1;
                 }
             }
         }
