@@ -24,5 +24,5 @@ class Solution {
         current.remove(current.size() - 1); // remove the candidate we just added
         helper(candidates, target, index + 1, current, result); // increment index to attempt the next candidate
     }
-
-}
+} // 2ms faster than 86% of submissions. 
+// I think you could optimize this by using a couple dynamic programming techniques and mod, but the implementation would become very messy. 
