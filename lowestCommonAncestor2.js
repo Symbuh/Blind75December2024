@@ -23,14 +23,9 @@ var lowestCommonAncestor = function(root, p, q) {
     let left = lowestCommonAncestor(root.left, p, q)
     let right = lowestCommonAncestor(root.right, p, q)
 
-    // The first instance we find both left and right as an ancestor we have found LCA
     if (left && right) {
         return root
     }
 
-    /*
-        Below is our bubble up case, if we only have left or right as the common ancestor we return the P or Q that we've found 
-        this will cause us to jump up to a higher ancestor. 
-    */
     return left ? left : right
 };
