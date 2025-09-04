@@ -23,9 +23,12 @@ var lowestCommonAncestor = function(root, p, q) {
     let left = lowestCommonAncestor(root.left, p, q)
     let right = lowestCommonAncestor(root.right, p, q)
 
+    // We know our current node is LCA if one ancestor exists in the right subtree and another in the left subtree
     if (left && right) {
         return root
     }
 
+    // We bubble up the non null value
+    // This is either a P, Q, or the LCA if another non-null value is not found
     return left ? left : right
 };
