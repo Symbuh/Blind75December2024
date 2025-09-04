@@ -37,8 +37,5 @@ TimeMap.prototype.get = function(key, timestamp) {
 };
 
 /** 
- * Your TimeMap object will be instantiated and called as such:
- * var obj = new TimeMap()
- * obj.set(key,value,timestamp)
- * var param_2 = obj.get(key,timestamp)
+ * 51ms, beats 80% of submissions
  */
